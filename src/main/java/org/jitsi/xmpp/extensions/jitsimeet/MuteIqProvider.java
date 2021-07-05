@@ -16,7 +16,7 @@
 package org.jitsi.xmpp.extensions.jitsimeet;
 
 import org.jivesoftware.smack.provider.*;
-
+import org.jitsi.utils.logging.*;
 import org.jxmpp.jid.*;
 import org.jxmpp.jid.impl.*;
 import org.xmlpull.v1.*;
@@ -29,6 +29,12 @@ import org.xmlpull.v1.*;
 public class MuteIqProvider
     extends IQProvider<MuteIq>
 {
+        /**
+     * The logger instance used by this class.
+     */
+    private final static Logger logger
+        = Logger.getLogger(MuteIqProvider.class);
+
     /**
      * Registers this IQ provider into given <tt>ProviderManager</tt>.
      */
@@ -67,6 +73,14 @@ public class MuteIqProvider
             {
                 Jid jid = JidCreate.from(jidStr);
                 iq.setJid(jid);
+            }
+
+            String lockStr = parser.getAttributeValue("", MuteIq.LOCK_AUDIO_DISABLE);
+            if (lockStr != null)
+            {
+                Boolean lockMute = Boolean.parseBoolean(lockStr);
+                logger.info("lockstr" + lockStr + "lockA" + lockMute);
+                iq.setLock(lockMute);
             }
 
             String actorStr

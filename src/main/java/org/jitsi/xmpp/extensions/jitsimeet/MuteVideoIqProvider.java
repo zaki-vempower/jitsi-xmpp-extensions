@@ -69,6 +69,13 @@ public class MuteVideoIqProvider
                 iq.setJid(jid);
             }
 
+            String lockStr = parser.getAttributeValue("", MuteVideoIq.LOCK_VIDEO_DISABLE);
+            if (lockStr != null)
+            {
+                Boolean lockMute = Boolean.parseBoolean(lockStr);
+                iq.setLock(lockMute);
+            }
+
             String actorStr
                 = parser.getAttributeValue("", MuteVideoIq.ACTOR_ATTR_NAME);
             if (actorStr != null)

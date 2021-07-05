@@ -48,6 +48,12 @@ public class MuteVideoIq
     public static final String ACTOR_ATTR_NAME = "actor";
 
     /**
+    * Attribute for Disabling the "audio"
+     */
+    public static final String LOCK_VIDEO_DISABLE = "lock_mic"; 
+
+
+    /**
      * Muted peer MUC jid.
      */
     private Jid jid;
@@ -56,6 +62,11 @@ public class MuteVideoIq
      * The jid of the peer tha initiated the mute, optional.
      */
     private Jid actor;
+
+    /**
+     * The Attribute for user's video is locked.
+     */
+    private Boolean lockMute = null;
 
     /**
      * To mute or unmute.
@@ -84,6 +95,11 @@ public class MuteVideoIq
             xml.attribute(ACTOR_ATTR_NAME, actor);
         }
 
+        if(lockMute != null)
+        {
+            xml.attribute(LOCK_VIDEO_DISABLE, lockMute);
+        }
+
         xml.rightAngleBracket()
             .append(mute.toString());
 
@@ -106,6 +122,24 @@ public class MuteVideoIq
     public Jid getJid()
     {
         return jid;
+    }
+
+    /**
+     * The actions determines whether the user will lock the user's Microphone
+     * or <tt>null</tt> if the action has not been specified(which is invalid).
+     */
+    public void setLock(Boolean lockMute)
+    {
+        this.lockMute = lockMute;
+    }
+
+    /**
+     * The actions determines whether the user will lock the user's Microphone
+     * or <tt>null</tt> if the action has not been specified(which is invalid).
+     */
+    public Boolean getLock()
+    {
+        return lockMute;
     }
 
     /**

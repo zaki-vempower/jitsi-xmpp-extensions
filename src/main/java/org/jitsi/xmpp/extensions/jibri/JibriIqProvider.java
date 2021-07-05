@@ -79,6 +79,21 @@ public class JibriIqProvider
             if (StringUtils.isNotEmpty(streamId))
                 iq.setStreamId(streamId);
 
+            String fbstreamId
+                = parser.getAttributeValue("", JibriIq.FB_STREAM_ID_ATTR_NAME);
+            if (StringUtils.isNotEmpty(fbstreamId))
+                iq.setFBStreamId(fbstreamId);
+
+            String igStreamId
+                = parser.getAttributeValue("",JibriIq.IG_STREAM_ID_ATTR_NAME);
+            if(StringUtils.isNotEmpty(igStreamId))
+                iq.setIGStreamId(igStreamId);
+
+            String recordStreamId
+                = parser.getAttributeValue("",JibriIq.RECORD_AND_LIVESTREAM);
+            if(StringUtils.isNotEmpty(recordStreamId))
+                iq.setrecordStreamId(recordStreamId);
+
             String youTubeBroadcastId
                     = parser.getAttributeValue("", JibriIq.YOUTUBE_BROADCAST_ID_ATTR_NAME);
             if (StringUtils.isNotEmpty(youTubeBroadcastId))

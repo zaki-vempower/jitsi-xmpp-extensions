@@ -94,6 +94,21 @@ public class JibriIq
     static final String STREAM_ID_ATTR_NAME = "streamid";
 
     /**
+     * The name of XML attribute which stores the facebook stream id.
+     */
+    static final String FB_STREAM_ID_ATTR_NAME = "fbstreamId";
+
+    /**
+     * The name of XML attribute which stores the instagram stream id.
+     */
+    static final String IG_STREAM_ID_ATTR_NAME = "igStreamid";
+    
+    /**
+      * The parameter for running both recording and livestream
+     */
+    static final String RECORD_AND_LIVESTREAM = "recordStreamId";
+
+    /**
      * The name of the XML attribute which stores the YouTube
      * broadcast ID
      */
@@ -172,6 +187,23 @@ public class JibriIq
      * value depends on recording service provider.
      */
     private String streamId = null;
+
+    /**
+     * The ID of the stream which will be used to record the conference. The
+     * value depends on recording service provider.
+     */
+    private String fbstreamId = null;
+
+    /**
+     * The ID of the stream which will be used to record the conference. The
+     * value depends on recording service provider.
+     */
+    private String igStreamId = null;
+
+    /**
+     * The Id for jibri to run both recording and live stream simultaneously 
+     */
+    private String recordStreamId = null;
 
     /**
      * The YouTube broadcast ID for the currently active stream.  This is combined
@@ -253,6 +285,33 @@ public class JibriIq
     }
 
     /**
+     * Returns the value of {@link #STREAM_ID_ATTR_NAME} attribute.
+     * @return a <tt>String</tt> which contains the value of "stream id"
+     *         attribute or <tt>null</tt> if empty.
+     */
+    public String getFBStreamId()
+    {
+        return fbstreamId;
+    }
+
+
+    /**
+     * Returns the value of {@link #IG_STREAM_ID_ATTR_NAME} attribute.
+     * @return a <tt>String</tt> which contains the value of "stream id"
+     *         attribute or <tt>null</tt> if empty.
+     */
+    public String getIGStreamId() { return igStreamId; }
+
+    /**
+     * Returns the value of {@link #RECORD_AND_LIVESTREAM} attribute.
+     * @return a <tt>String</tt> which contains the value whether to stream and record accordinly
+     */
+    public String getrecordStreamId() 
+    { 
+        return recordStreamId; 
+    }
+
+    /**
      * Returns the value of {@link #YOUTUBE_BROADCAST_ID_ATTR_NAME} attribute.
      * @return a <tt>String</tt> which contains the value of the
      * {@link #YOUTUBE_BROADCAST_ID_ATTR_NAME} attribute, or null if empty.
@@ -267,6 +326,36 @@ public class JibriIq
     public void setStreamId(String streamId)
     {
         this.streamId = streamId;
+    }
+
+    /**
+     * Sets the value for {@link #STREAM_ID_ATTR_NAME} attribute.
+     * @param streamId a <tt>String</tt> for the stream id attribute or
+     *        <tt>null</tt> to remove it from XML element.
+     */
+    public void setFBStreamId(String fbstreamId)
+    {
+        this.fbstreamId = fbstreamId;
+    }
+
+    /**
+     * Sets the value for {@link #IG_STREAM_ID_ATTR_NAME} attribute.
+     * @param streamId a <tt>String</tt> for the stream id attribute or
+     *        <tt>null</tt> to remove it from XML element.
+     */
+    public void setIGStreamId(String igStreamId)
+    {
+        this.igStreamId = igStreamId;
+    }
+
+
+    /**
+     * Sets the value of {@link #RECORD_AND_LIVESTREAM} attribute.
+     * @return a <tt>String</tt> which contains the value whether to stream and record accordinly
+     */
+    public void setrecordStreamId(String recordStreamId) 
+    {
+         this.recordStreamId = recordStreamId;
     }
 
     /**
@@ -357,6 +446,9 @@ public class JibriIq
 
         xml.optAttribute(ROOM_ATTR_NAME, room);
         xml.optAttribute(STREAM_ID_ATTR_NAME, streamId);
+        xml.optAttribute(FB_STREAM_ID_ATTR_NAME,fbstreamId);
+        xml.optAttribute(IG_STREAM_ID_ATTR_NAME,igStreamId);
+        xml.optAttribute(RECORD_AND_LIVESTREAM,recordStreamId);
         xml.optAttribute(YOUTUBE_BROADCAST_ID_ATTR_NAME, youTubeBroadcastId);
         xml.optAttribute(DISPLAY_NAME_ATTR_NAME, displayName);
         xml.optAttribute(SIP_ADDRESS_ATTR_NAME, sipAddress);
